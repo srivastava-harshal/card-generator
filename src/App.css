@@ -1,0 +1,194 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+input {
+  padding: 5px;
+  border-radius: 3px;
+  margin: 6px 0;
+}
+
+.parent {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  width: 40%;
+  background-image: linear-gradient(
+    to top left,
+    rgb(49, 4, 49),
+    rgb(63, 36, 102),
+    rgb(70, 22, 70)
+  );
+}
+
+.right {
+  width: 60%;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin-top: 30%;
+  margin-left: 10%;
+}
+
+.card-holder {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.card-number {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.exp-date {
+  display: flex;
+  /* width: 50%; */
+  gap: 25px;
+}
+
+.exp-input-field {
+  width: 40px;
+  margin-right: 5px;
+}
+
+button {
+  margin-top: 10px;
+  width: 50%;
+  padding: 5px;
+  background-color: rgb(49, 4, 49);
+  color: white;
+  border-radius: 3px;
+}
+
+.card-1 {
+  width: 55%;
+  height: 25%;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to top left,
+    rgb(199, 55, 199),
+    rgb(101, 46, 177),
+    rgb(103, 6, 103)
+  );
+  margin-top: 30%;
+  margin-left: 60%;
+}
+
+.card-2 {
+  width: 55%;
+  height: 25%;
+  background-color: rgb(201, 191, 191);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 75%;
+}
+
+.circles {
+  display: flex;
+  width: 100%;
+  height: 30%;
+}
+
+.circle-1 {
+  width: 12%;
+  height: 60%;
+  background-color: beige;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.circle-2 {
+  width: 4%;
+  height: 22%;
+  background-color: beige;
+  border-radius: 50%;
+  margin-top: 35px;
+  margin-left: 15px;
+  opacity: 0.3;
+  border: 1px solid rgb(163, 158, 158);
+}
+
+.number-on-card {
+  margin-top: 50px;
+  font-size: 1.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: aliceblue;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.lower-section {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.lower-name {
+  width: 100%;
+  font-size: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: aliceblue;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.lower-exp-date {
+  width: 100%;
+  font-size: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: aliceblue;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.black-strip {
+  width: 100%;
+  height: 20%;
+  background-color: black;
+  margin-top: 20px;
+}
+
+.gray-strip {
+  width: 70%;
+  height: 15%;
+  background-color: rgb(152, 151, 151);
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-left: 40px;
+  text-align: end;
+  font-size: 1rem;
+  color: rgb(214, 214, 207);
+  font-weight: 100;
+  padding-top: 5px;
+  padding-right: 5px;
+}
