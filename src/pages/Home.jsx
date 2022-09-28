@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const initialData = {
   cardHolder: '',
@@ -8,11 +8,95 @@ const initialData = {
   cvv: '',
 };
 
+const initialErrors = {
+  cardHolder: '',
+  cardNumber: '',
+  month: '',
+  year: '',
+  cvv: '',
+};
+
+const validate = (data, setError) => {
+  const { cardHolder, cardNumber, month, year, cvv } = data;
+
+  if (!cardHolder) {
+    setError({
+      cardHolder: 'Name cannot be empty!',
+    });
+    return;
+  }
+
+  if (!cardNumber) {
+    setError({
+      cardNumber: 'Card Number cannot be empty!',
+    });
+    return;
+  }
+
+  if (!month) {
+    setError({
+      month: 'Month cannot be empty!',
+    });
+    return;
+  }
+
+  if (!year) {
+    setError({
+      year: 'Year cannot be empty!',
+    });
+    return;
+  }
+
+  if (!cvv) {
+    setError({
+      cvv: 'CVV cannot be empty!',
+    });
+    return;
+  }
+
+  if (cardHolder.length < 3) {
+    setError(prev => ({
+      ...prev,
+      cardHolder: 'Name cannot be less than 3 characters',
+    }));
+    return;
+  }
+
+  if (cardHolder.length > 35) {
+    setError(prev => ({
+      ...prev,
+      cardHolder: 'Name cannot be more than 35 characters',
+    }));
+    return;
+  }
+
+  if (isNaN(month)) {
+    setError(prev => ({
+      ...prev,
+      cardNumber: 'Please enter month in format MM.',
+    }));
+    return;
+  }
+
+  if (isNaN(year)) {
+    setError(prev => ({
+      ...prev,
+      cardNumber: 'Please enter year in format YY.',
+    }));
+    return;
+  }
+
+  return true;
+};
+
 const Home = () => {
   const [data, setData] = useState(initialData);
+  const [error, setError] = useState(initialErrors);
 
   const handleChange = (key, value) => {
+    setError(initialErrors);
     setData({ ...data, [key]: value });
+    console.log(value);
   };
 
   const getCardNumber = () => {
@@ -31,6 +115,17 @@ const Home = () => {
     } else {
       return value;
     }
+  };
+
+  const onClick = e => {
+    // e.stopPropagation();
+
+    if (validate(data, setError)) {
+      // send data to api
+      console.log('form submitted');
+      setData(initialData);
+    }
+    // console.log(data);
   };
 
   return (
@@ -63,27 +158,41 @@ const Home = () => {
       </div>
       <div className="right">
         <div className="right-container">
-          <div className="card-holder">
+          <div style={{ position: 'relative' }} className="card-holder">
             <p>CARDHOLDER NAME</p>
             <input
+              className={error.cardHolder ? 'error' : ''}
               maxLength="35"
               type="text"
               placeholder="e.g Steve Jobs"
-              value={data.cardHolder.toUpperCase()}
-              onChange={e => handleChange('cardHolder', e.target.value)}
+              value={data.cardHolder}
+              onChange={e =>
+                handleChange('cardHolder', e.target.value.toUpperCase())
+              }
             />
+            {error.cardHolder && (
+              <p style={{ position: 'absolute', bottom: '-7px', color: 'red' }}>
+                {error.cardHolder}
+              </p>
+            )}
           </div>
-          <div className="card-number">
+          <div className="card-number" style={{ position: 'relative' }}>
             <p>CARD NUMBER</p>
             <input
+              className={error.cardNumber ? 'error' : ''}
               maxLength="19"
               type="text"
               placeholder="e.g 1234 5678 9123 0000"
               value={getCardNumber()}
               onChange={e => handleChange('cardNumber', e.target.value)}
             />
+            {error.cardNumber && (
+              <p style={{ position: 'absolute', color: 'red', bottom: '-7px' }}>
+                {error.cardNumber}
+              </p>
+            )}
           </div>
-          <div className="exp-date">
+          <div className="exp-date" style={{ position: 'relative' }}>
             <div>
               <p>EXP.DATE (MM/YY)</p>
               <input
@@ -102,8 +211,19 @@ const Home = () => {
                 value={data.year}
                 onChange={e => handleChange('year', e.target.value)}
               />
+              {error.month || error.year ? (
+                <p
+                  style={{
+                    position: 'absolute',
+                    color: 'red',
+                    bottom: '-7px',
+                  }}
+                >
+                  {error.month}
+                </p>
+              ) : null}
             </div>
-            <div>
+            <div style={{ position: 'relative' }}>
               <p>CVV</p>
               <input
                 maxLength="3"
@@ -112,9 +232,16 @@ const Home = () => {
                 value={data.cvv}
                 onChange={e => handleChange('cvv', e.target.value)}
               />
+              {error.cvv && (
+                <p
+                  style={{ position: 'absolute', color: 'red', bottom: '-7px' }}
+                >
+                  {error.cvv}
+                </p>
+              )}
             </div>
           </div>
-          <button>CONFIRM</button>
+          <button onClick={onClick}>CONFIRM</button>
         </div>
       </div>
     </div>
