@@ -24,13 +24,36 @@ input {
   margin: 6px 0;
 }
 
-.parent {
+/* @media screen and (min-width: 1200px) { */
+/* } */
+.wrapper {
   display: flex;
-  height: 100vh;
+  justify-content: center;
 }
 
-.left {
-  width: 40%;
+.parent {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+}
+
+@media screen and (min-width: 1200px) {
+  .parent {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.left-bg {
+  position: absolute;
+  width: 420px;
+  max-width: 480px;
+  height: 100vh;
+  top: 0;
+  left: 0;
   background-image: linear-gradient(
     to top left,
     rgb(49, 4, 49),
@@ -39,35 +62,59 @@ input {
   );
 }
 
+.right-bg {
+  position: absolute;
+  /* width: 60vw;
+  max-width: 720px;
+  height: 100vh;
+  top: 0;
+  right: 0; */
+}
+
+.container {
+  display: flex;
+}
+
+.left {
+  position: relative;
+  /* width: 40%;
+  background-image: linear-gradient(
+    to top left,
+    rgb(49, 4, 49),
+    rgb(63, 36, 102),
+    rgb(70, 22, 70)
+  ); */
+}
+
 .right {
-  width: 60%;
+  /* width: 60%; */
+  margin-left: 50px;
 }
 
 .right-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  /* width: 70%;
   margin-top: 30%;
-  margin-left: 10%;
+  margin-left: 10%; */
 }
 
 .card-holder {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  /* width: 50%; */
 }
 
 .card-number {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  /* width: 50%; */
 }
 
 .exp-date {
   display: flex;
-  /* width: 50%; */
-  gap: 25px;
+  gap: 15px;
 }
 
 .exp-input-field {
@@ -75,18 +122,24 @@ input {
   margin-right: 5px;
 }
 
+.name-input,
+.number-input {
+  min-width: 280px;
+}
+
 button {
   margin-top: 10px;
-  width: 50%;
-  padding: 5px;
+  /* width: 50%; */
+  padding: 5px 115px;
   background-color: rgb(49, 4, 49);
   color: white;
   border-radius: 3px;
 }
 
 .card-1 {
-  width: 55%;
-  height: 25%;
+  width: 300px;
+  height: 160px;
+  margin: 0 0 0 30px;
   border-radius: 10px;
   background-image: linear-gradient(
     to top left,
@@ -94,19 +147,19 @@ button {
     rgb(101, 46, 177),
     rgb(103, 6, 103)
   );
-  margin-top: 30%;
-  margin-left: 60%;
+  /* margin-top: 30%;
+  margin-left: 60%; */
 }
 
 .card-2 {
-  width: 55%;
-  height: 25%;
+  width: 300px;
+  height: 160px;
+  margin: 30px 0 0 100px;
   background-color: rgb(201, 191, 191);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
-  margin-left: 75%;
+  justify-content: center;
 }
 
 .circles {
@@ -173,9 +226,8 @@ button {
 
 .black-strip {
   width: 100%;
-  height: 20%;
+  height: 30px;
   background-color: black;
-  margin-top: 20px;
 }
 
 .gray-strip {
@@ -191,4 +243,50 @@ button {
   font-weight: 100;
   padding-top: 5px;
   padding-right: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    display: block;
+  }
+
+  .left-bg {
+    width: 100vw;
+    height: 50vh;
+    max-width: 100%;
+  }
+
+  .right-bg {
+    width: 100vw;
+    height: 50vh;
+    bottom: 0;
+  }
+  .container {
+    flex-direction: column;
+  }
+
+  .left {
+    display: flex;
+    gap: 30px;
+    margin: 50px 0;
+  }
+
+  .right {
+    margin: 20px 0 0 0;
+  }
+
+  .card-1,
+  .card-2 {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .left {
+    flex-direction: column;
+  }
+
+  .right {
+    margin: 0;
+  }
 }

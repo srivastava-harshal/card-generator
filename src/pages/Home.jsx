@@ -129,119 +129,147 @@ const Home = () => {
   };
 
   return (
-    <div className="parent">
-      <div className="left">
-        <div className="card-1">
-          <div className="circles">
-            <div className="circle-1"></div>
-            <div className="circle-2"></div>
-          </div>
-          <div className="number-on-card">
-            {data.cardNumber === '' ? '0000 0000 0000 0000' : data.cardNumber}
-          </div>
-          <div className="lower-section">
-            <div className="lower-name">
-              {data.cardHolder === ''
-                ? 'STEVE JOBS'
-                : data.cardHolder.toUpperCase()}
+    <div className="wrapper">
+      <div className="parent">
+        <div className="left-bg"></div>
+        <div className="right-bg"></div>
+        <div className="container">
+          <div className="left">
+            <div className="card-1">
+              <div className="circles">
+                <div className="circle-1"></div>
+                <div className="circle-2"></div>
+              </div>
+              <div className="number-on-card">
+                {data.cardNumber === ''
+                  ? '0000 0000 0000 0000'
+                  : data.cardNumber}
+              </div>
+              <div className="lower-section">
+                <div className="lower-name">
+                  {data.cardHolder === ''
+                    ? 'STEVE JOBS'
+                    : data.cardHolder.toUpperCase()}
+                </div>
+                <div className="lower-exp-date">
+                  {data.month === '' ? 'MM' : data.month}/
+                  {data.year === '' ? 'YY' : data.year}
+                </div>
+              </div>
             </div>
-            <div className="lower-exp-date">
-              {data.month === '' ? 'MM' : data.month}/
-              {data.year === '' ? 'YY' : data.year}
-            </div>
-          </div>
-        </div>
-        <div className="card-2">
-          <div className="black-strip"></div>
-          <div className="gray-strip">{data.cvv === '' ? '123' : data.cvv}</div>
-        </div>
-      </div>
-      <div className="right">
-        <div className="right-container">
-          <div style={{ position: 'relative' }} className="card-holder">
-            <p>CARDHOLDER NAME</p>
-            <input
-              className={error.cardHolder ? 'error' : ''}
-              maxLength="35"
-              type="text"
-              placeholder="e.g Steve Jobs"
-              value={data.cardHolder}
-              onChange={e =>
-                handleChange('cardHolder', e.target.value.toUpperCase())
-              }
-            />
-            {error.cardHolder && (
-              <p style={{ position: 'absolute', bottom: '-7px', color: 'red' }}>
-                {error.cardHolder}
-              </p>
-            )}
-          </div>
-          <div className="card-number" style={{ position: 'relative' }}>
-            <p>CARD NUMBER</p>
-            <input
-              className={error.cardNumber ? 'error' : ''}
-              maxLength="19"
-              type="text"
-              placeholder="e.g 1234 5678 9123 0000"
-              value={getCardNumber()}
-              onChange={e => handleChange('cardNumber', e.target.value)}
-            />
-            {error.cardNumber && (
-              <p style={{ position: 'absolute', color: 'red', bottom: '-7px' }}>
-                {error.cardNumber}
-              </p>
-            )}
-          </div>
-          <div className="exp-date" style={{ position: 'relative' }}>
-            <div>
-              <p>EXP.DATE (MM/YY)</p>
-              <input
-                maxLength="2"
-                type="text"
-                className="exp-input-field"
-                placeholder="MM"
-                value={data.month}
-                onChange={e => handleChange('month', e.target.value)}
-              />
-              <input
-                maxLength="2"
-                type="text"
-                className="exp-input-field"
-                placeholder="YY"
-                value={data.year}
-                onChange={e => handleChange('year', e.target.value)}
-              />
-              {error.month || error.year ? (
-                <p
-                  style={{
-                    position: 'absolute',
-                    color: 'red',
-                    bottom: '-7px',
-                  }}
-                >
-                  {error.month}
-                </p>
-              ) : null}
-            </div>
-            <div style={{ position: 'relative' }}>
-              <p>CVV</p>
-              <input
-                maxLength="3"
-                type="text"
-                placeholder="e.g 123"
-                value={data.cvv}
-                onChange={e => handleChange('cvv', e.target.value)}
-              />
-              {error.cvv && (
-                <p
-                  style={{ position: 'absolute', color: 'red', bottom: '-7px' }}
-                >
-                  {error.cvv}
-                </p>
-              )}
+            <div className="card-2">
+              <div className="black-strip"></div>
+              <div className="gray-strip">
+                {data.cvv === '' ? '123' : data.cvv}
+              </div>
             </div>
           </div>
-          <button onClick={onClick}>CONFIRM</button>
+          <div className="right">
+            <div className="right-container">
+              <div style={{ position: 'relative' }} className="card-holder">
+                <p>CARDHOLDER NAME</p>
+                <input
+                  className={'name-input' + (error.cardHolder ? 'error' : '')}
+                  maxLength="35"
+                  type="text"
+                  placeholder="e.g Steve Jobs"
+                  value={data.cardHolder}
+                  onChange={e =>
+                    handleChange('cardHolder', e.target.value.toUpperCase())
+                  }
+                />
+                {error.cardHolder && (
+                  <p
+                    style={{
+                      position: 'absolute',
+                      bottom: '-7px',
+                      color: 'red',
+                    }}
+                  >
+                    {error.cardHolder}
+                  </p>
+                )}
+              </div>
+              <div className="card-number" style={{ position: 'relative' }}>
+                <p>CARD NUMBER</p>
+                <input
+                  className={
+                    'number-input' + (error.cardNumber ? ' error' : '')
+                  }
+                  maxLength="19"
+                  type="text"
+                  placeholder="e.g 1234 5678 9123 0000"
+                  value={getCardNumber()}
+                  onChange={e => handleChange('cardNumber', e.target.value)}
+                />
+                {error.cardNumber && (
+                  <p
+                    style={{
+                      position: 'absolute',
+                      color: 'red',
+                      bottom: '-7px',
+                    }}
+                  >
+                    {error.cardNumber}
+                  </p>
+                )}
+              </div>
+              <div className="exp-date" style={{ position: 'relative' }}>
+                <div>
+                  <p>EXP.DATE (MM/YY)</p>
+                  <input
+                    maxLength="2"
+                    type="text"
+                    className="exp-input-field"
+                    placeholder="MM"
+                    value={data.month}
+                    onChange={e => handleChange('month', e.target.value)}
+                  />
+                  <input
+                    maxLength="2"
+                    type="text"
+                    className="exp-input-field"
+                    placeholder="YY"
+                    value={data.year}
+                    onChange={e => handleChange('year', e.target.value)}
+                  />
+                  {error.month || error.year ? (
+                    <p
+                      style={{
+                        position: 'absolute',
+                        color: 'red',
+                        bottom: '-7px',
+                      }}
+                    >
+                      {error.month}
+                    </p>
+                  ) : null}
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <p>CVV</p>
+                  <input
+                    maxLength="3"
+                    type="text"
+                    placeholder="e.g 123"
+                    value={data.cvv}
+                    onChange={e => handleChange('cvv', e.target.value)}
+                  />
+                  {error.cvv && (
+                    <p
+                      style={{
+                        position: 'absolute',
+                        color: 'red',
+                        bottom: '-7px',
+                      }}
+                    >
+                      {error.cvv}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <button onClick={onClick}>CONFIRM</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
